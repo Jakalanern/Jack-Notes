@@ -26,6 +26,9 @@ let overlay = $(".overlay")
 let select = $(".select")
 let mostRecentOption = $(".most-recent-option")
 let alphabeticalOption = $("alphabetical-option")
+// SETTINGS
+let settingsBtn = $(".settings-btn")
+let settings = $(".settings")
 
 window.onload = function () {
   // Load notes from local Storage
@@ -35,6 +38,19 @@ window.onload = function () {
     creationSubmitCount = parseInt(localStorage.getItem("noteCount"))
   }
 }
+
+settingsBtn.addEventListener("click", function (e) {
+  e.stopPropagation()
+  settings.style.display === "flex"
+    ? (settings.style.display = "none")
+    : (settings.style.display = "flex")
+})
+
+$("body").addEventListener("click", function () {
+  if (settings.style.display === "flex") {
+    settings.style.display = "none"
+  }
+})
 
 // YOU CAN PRESS ENTER TO CREATE NOTE IF ON NOTES PAGE
 document.addEventListener("keydown", function (e) {
