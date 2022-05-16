@@ -1,0 +1,347 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+  --clr-black: rgba(0, 0, 0, 0.815);
+  --clr-accent: rgb(239, 140, 69);
+  --clr-accent-hover: rgb(209, 112, 44);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  color: black;
+  font-family: "Quicksand", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+}
+::-webkit-scrollbar-track {
+  background: none; /* color of the tracking area */
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 0, 0); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+header {
+  width: 100%;
+  padding: 2em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+
+  background: var(--clr-accent);
+  color: white;
+}
+
+header h1 {
+  font-weight: 500;
+  font-size: 3em;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.187);
+  padding-bottom: 0.15em;
+}
+
+header p {
+  font-size: 1.5em;
+}
+
+.sub-header {
+  width: 100%;
+  padding: 1.5em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+
+  background: rgba(201, 201, 201, 0.265);
+}
+
+.sub-header input {
+  font-size: 1.15em;
+  padding: 0.25em;
+}
+
+.sub-header select {
+  font-size: 1.15em;
+  padding: 0.25em;
+
+  cursor: pointer;
+}
+
+/* NOTES SECTION */
+
+.notes-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.notes-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2em;
+}
+
+.notes-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.note {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 2em;
+  gap: 0.5em;
+
+  background: rgb(236, 236, 236);
+  border-radius: 0.5em;
+
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.note h4 {
+  font-size: 1.5em;
+}
+
+.note p {
+  font-style: italic;
+  font-size: 1em;
+}
+
+.note:hover {
+  background: rgb(225, 225, 225);
+}
+
+.notes-section button {
+  width: max-content;
+  align-self: flex-start;
+
+  background: var(--clr-accent);
+  color: white;
+
+  padding: 0.75rem 1.5rem;
+
+  border: none;
+  border-radius: 0.25em;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.notes-section button:hover {
+  background: var(--clr-accent-hover);
+}
+
+.notes-section .delete-all-btn {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  transform: scale(0.85);
+  background: rgb(218, 29, 29);
+}
+
+.notes-section .delete-all-btn:hover {
+  background: rgb(150, 20, 20);
+}
+
+/* CREATE SECTION */
+
+.creation-section {
+  display: flex;
+  display: none;
+
+  width: 100%;
+  justify-content: center;
+}
+
+.creation-container {
+  padding: 2em;
+}
+
+.creation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.creation-form h2 {
+  font-size: 2em;
+  align-self: center;
+  font-weight: 500;
+}
+
+.creation-container .creation-form-title-input {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5em;
+  font-weight: 500;
+
+  padding: 0.5em;
+}
+
+.creation-container .creation-form-desc-input {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  padding: 0.5em;
+}
+
+.creation-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.creation-form .title-alert {
+  display: none;
+  text-align: center;
+  color: red;
+  margin: 0 auto;
+  font-size: 1.5em;
+}
+
+.back {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.25em;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+
+  border: none;
+  background: var(--clr-accent);
+  color: white;
+
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.back:hover {
+  background: var(--clr-accent-hover);
+}
+
+.submit {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.25em;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+
+  border: none;
+  background: var(--clr-accent);
+  color: white;
+
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.submit:hover {
+  background: var(--clr-accent-hover);
+}
+
+/* MODAL */
+
+.overlay {
+  z-index: 98;
+
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.85;
+}
+
+.modal {
+  z-index: 99;
+  display: none;
+  flex-direction: column;
+  gap: 2em;
+  padding: 4em 2em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-height: 90vh;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 1em;
+}
+
+.modal-title {
+  border-bottom: 1px solid var(--clr-accent-hover);
+  text-align: center;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 2.25em;
+  padding-bottom: 0.5em;
+}
+
+.modal-desc {
+  width: 100%;
+  overflow: auto;
+  padding-right: 0.5em;
+  font-size: 2em;
+  text-align: center;
+  line-height: 1.5em;
+  padding: 1em;
+}
+
+.x {
+  background-image: url(./icons/trash-thicklines.png);
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  font-size: 2em;
+  font-weight: 600;
+  position: absolute;
+  top: 0.45em;
+  right: 0.75em;
+  cursor: pointer;
+
+  transition: transform 0.2s;
+}
+
+.x:hover {
+  transform: scale(1.1);
+}
+
+.edit {
+  position: absolute;
+  background-image: url(./icons/edit-black.png);
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  font-size: 2em;
+  font-weight: 500;
+  top: 0.45em;
+  left: 0.75em;
+  cursor: pointer;
+
+  transition: transform 0.15s;
+}
+
+.edit:hover {
+  transform: scale(1.1);
+}

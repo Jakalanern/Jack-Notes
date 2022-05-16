@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="app.css" />
+    <title>Challenge #21</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="overlay"></div>
+      <div class="modal">
+        <div class="edit"></div>
+        <div class="x"></div>
+        <div class="modal-title"></div>
+        <div class="modal-desc"></div>
+      </div>
+      <header>
+        <h1>Notes App</h1>
+        <p>Take notes and never forget</p>
+      </header>
+      <div class="sub-header">
+        <select name="" id="" class="select">
+          <option value="0" class="sort-notes-option" disabled selected>
+            -- Sorting By --
+          </option>
+          <option value="1" class="most-recent-option">Most Recent</option>
+          <option value="2" class="alphabetical-option">Alphabetical</option>
+        </select>
+      </div>
+      <section class="notes-section">
+        <form action="" class="notes-form">
+          <div class="notes-container"></div>
+          <button class="create-btn">Create Note</button>
+          <button type="button" class="delete-all-btn">DELETE ALL</button>
+        </form>
+      </section>
+      <section class="creation-section">
+        <div class="creation-container">
+          <form action="" class="creation-form">
+            <h2 class="title-alert">Please enter a title for your note!</h2>
+            <h2>Create Note</h2>
+            <input
+              type="text"
+              placeholder="Note title"
+              class="creation-form-title-input"
+            />
+            <textarea
+              type="text"
+              placeholder="Note Description"
+              class="creation-form-desc-input"
+              rows="6"
+              cols="30"
+            /></textarea>
+            <div class="creation-buttons">
+              <button class="back" type="button">Back</button>
+              <button class="submit" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
