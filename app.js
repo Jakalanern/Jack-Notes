@@ -15,6 +15,7 @@ let creationBtnParent = $(".creation-buttons")
 let creationBackBtn = $(".back")
 let creationSubmitBtn = $(".submit")
 let creationTitleAlert = $(".title-alert")
+
 // MODAL / OVERLAY VARIABLES
 let modal = $(".modal")
 let x = $(".x")
@@ -22,10 +23,12 @@ let editBtn = $(".edit")
 let modalDesc = $(".modal-desc")
 let modalTitle = $(".modal-title")
 let overlay = $(".overlay")
+
 // SELECTOR VARIABLES
 let select = $(".select")
 let mostRecentOption = $(".most-recent-option")
 let alphabeticalOption = $("alphabetical-option")
+
 // SETTINGS
 let settingsBtn = $(".settings-btn")
 let settings = $(".settings")
@@ -35,12 +38,12 @@ let allColorBlocks = $$(".colorblock")
 let colorChangeOverlay = $(".color-change-overlay")
 
 let colors = {
-  red: { main: "rgb(161, 29, 29)", hover: "rgb(129, 9, 9)" },
-  blue: { main: "rgb(72, 72, 205)", hover: "rgb(42, 42, 163)" },
-  green: { main: "rgb(53, 123, 53)", hover: "rgb(40, 102, 40)" },
-  orange: { main: "rgb(226, 129, 26)", hover: "rgb(195, 107, 13)" },
-  purple: { main: "rgb(146, 67, 146)", hover: "rgb(115, 46, 115)" },
-  pink: { main: "rgb(255, 144, 162)", hover: "rgb(205, 105, 121)" },
+  red: "rgb(161, 29, 29)",
+  blue: "rgb(72, 72, 205)",
+  green: "rgb(53, 123, 53)",
+  orange: "rgb(226, 129, 26)",
+  purple: "rgb(146, 67, 146)",
+  pink: "rgb(255, 144, 162)",
 }
 
 allColorBlocks.forEach(function (block) {
@@ -48,26 +51,6 @@ allColorBlocks.forEach(function (block) {
     changeAccentColor(block.id)
   })
 })
-
-function changeAccentColor(color) {
-  allColorBlocks.forEach(function (colorBlock) {
-    if (colorBlock.id === color) {
-      $(".header").style.background = color
-      $$("button").forEach(function (button) {
-        if (
-          button.innerText !== "DELETE ALL NOTES" ||
-          button.innerText !== "CHANGE ACCENT COLOR"
-        ) {
-          if (button.innerText !== "DELETE ALL NOTES") {
-            button.style.background = color
-          } else if (button.innerText !== "CHANGE ACCENT COLOR") {
-            button.style.background = "red"
-          }
-        }
-      })
-    }
-  })
-}
 
 window.onload = function () {
   // Load notes from local Storage
@@ -404,4 +387,24 @@ function deleteLastSelectedElement() {
     }
     currentEle.remove()
   }
+}
+
+function changeAccentColor(color) {
+  allColorBlocks.forEach(function (colorBlock) {
+    if (colorBlock.id === color) {
+      $(".header").style.background = color
+      $$("button").forEach(function (button) {
+        if (
+          button.innerText !== "DELETE ALL NOTES" ||
+          button.innerText !== "CHANGE ACCENT COLOR"
+        ) {
+          if (button.innerText !== "DELETE ALL NOTES") {
+            button.style.background = color
+          } else if (button.innerText !== "CHANGE ACCENT COLOR") {
+            button.style.background = "red"
+          }
+        }
+      })
+    }
+  })
 }
