@@ -327,15 +327,18 @@ header p {
 }
 
 .modal-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   border-bottom: 1px solid var(--clr-accent-hover);
   text-align: center;
   margin: 0 auto;
-  font-weight: 600;
   font-size: 2.25em;
   padding-bottom: 0.5em;
 }
 
 .modal-desc {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
   width: 100%;
   overflow: auto;
   padding-right: 0.5em;
