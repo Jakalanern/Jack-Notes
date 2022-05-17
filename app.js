@@ -216,7 +216,7 @@ function createNote(note) {
     : (noteDesc.innerHTML = "No Description Added")
   if (editing) {
     note.lastEditTime = currentTime
-    noteTime.innerText = "Edited at: " + currentTime
+    noteTime.innerText = "Edited at " + currentTime
   } else {
     note.timeCreated = currentTime
     noteTime.innerText = "Created at " + currentTime
