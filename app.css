@@ -508,6 +508,11 @@ header p {
   font-family: "Quicksand", sans-serif;
 }
 
+.mobile-settings {
+  position: fixed;
+  transform: translateX(100vw);
+}
+
 @media (max-width: 500px) {
   .mobile-settings {
     transform: translateX(100%);
