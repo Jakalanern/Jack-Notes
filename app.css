@@ -441,6 +441,12 @@ header p {
   transform: translate(-50%, -50%);
   background: white;
   border-radius: 1em;
+
+  min-width: 500px;
+}
+
+.modal-back-btn {
+  display: none;
 }
 
 .modal-title {
@@ -527,30 +533,30 @@ header p {
 
     transition: transform 0.25s;
   }
-  
+
   .mobile-btn {
     background: transparent;
     border: 2px solid white;
     margin: 0 auto;
     font-size: 1em;
   }
-  
+
   .mobile-change-accent-btn {
     margin-top: 3em;
   }
-  
+
   .mobile-change-accent-btn:hover {
     background: none;
   }
-  
+
   .mobile-delete-all-btn {
     background: red;
   }
-  
+
   .mobile-delete-all-btn:hover {
     background: rgb(187, 0, 0);
   }
-  
+
   .modal {
     display: none;
     flex-direction: column;
@@ -560,8 +566,13 @@ header p {
     border-radius: 0px;
     padding: 8em 0em;
   }
-  
+
+  .modal-desc {
+    width: 75%;
+  }
+
   .modal-back-btn {
+    display: initial;
     font-family: "Quicksand", sans-serif;
     color: white;
     background: var(--clr-accent);
@@ -572,14 +583,22 @@ header p {
     border-radius: 0.25em;
     margin-top: auto;
   }
-  
+
   .creation-form {
-    margin-top: 4em;
+    margin-top: 2em;
     transform: scale(0.9);
   }
-  
+
   .edit,
   .x {
-    margin-top: 2.25em;
+    margin-top: 1.5em;
+  }
+
+  .edit {
+    margin-left: 1.5em;
+  }
+
+  .x {
+    margin-right: 1.5em;
   }
 }

@@ -247,11 +247,11 @@ creationForm.addEventListener("submit", function (e) {
 // BUTTONS
 createBtn.addEventListener("click", function () {
   goToCreation()
-  toggleSubHeader()
+  // toggleSubHeader()
 })
 creationBackBtn.addEventListener("click", function () {
   goToNotes()
-  toggleSubHeader()
+  // toggleSubHeader()
 })
 deleteAllBtn.addEventListener("click", deleteAll)
 
