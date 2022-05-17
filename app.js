@@ -23,6 +23,7 @@ let editBtn = $(".edit")
 let modalDesc = $(".modal-desc")
 let modalTitle = $(".modal-title")
 let overlay = $(".overlay")
+let modalBackBtn = $(".modal-back-btn")
 
 // SELECTOR VARIABLES
 let select = $(".select")
@@ -46,12 +47,6 @@ let colors = {
   pink: "rgb(255, 144, 162)",
 }
 
-allColorBlocks.forEach(function (block) {
-  block.addEventListener("click", function () {
-    changeAccentColor(block.id)
-  })
-})
-
 window.onload = function () {
   // Load notes from local Storage
   createNotesFromLocalStorage()
@@ -60,6 +55,16 @@ window.onload = function () {
     creationSubmitCount = parseInt(localStorage.getItem("noteCount"))
   }
 }
+
+allColorBlocks.forEach(function (block) {
+  block.addEventListener("click", function () {
+    changeAccentColor(block.id)
+  })
+})
+
+modalBackBtn.addEventListener("click", function () {
+  exitModal()
+})
 
 changeAccentBtn.addEventListener("click", function (e) {
   e.stopPropagation()
