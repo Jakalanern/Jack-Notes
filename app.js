@@ -2,6 +2,8 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 // VARIABLES
+let subHeader = $(".sub-header")
+
 let createBtn = $(".create-btn")
 let deleteAllBtn = $(".delete-all-btn")
 let notesSection = $(".notes-section")
@@ -38,6 +40,11 @@ let colorChangePage = $(".color-change-page")
 let allColorBlocks = $$(".colorblock")
 let colorChangeOverlay = $(".color-change-overlay")
 
+// MOBILE SETTINGS
+let mobileSettings = $(".mobile-settings")
+let mobileChangeAccentBtn = $(".mobile-change-accent-btn")
+let mobileDeleteAllBtn = $(".mobile-delete-all-btn")
+
 let colors = {
   red: "rgb(161, 29, 29)",
   blue: "rgb(72, 72, 205)",
@@ -47,6 +54,7 @@ let colors = {
   pink: "rgb(255, 144, 162)",
 }
 
+// OUR ONLOAD
 window.onload = function () {
   // Load notes from local Storage
   createNotesFromLocalStorage()
@@ -56,14 +64,61 @@ window.onload = function () {
   }
 }
 
+// MOBILE SETTINGS MENU
+
+let viewportWidth = window.innerWidth
+// IF MOBILE (MAX-WIDTH 500px)
+if (viewportWidth < 500) {
+  // CODE HERE
+  console.log("MOBILE MOBILE MOBILE!")
+} else {
+  console.log("DEKSTOP DESKTOP DESKTOP!")
+}
+
+modalBackBtn.addEventListener("click", function () {
+  exitModal()
+})
+
+// END OF MOBILE STUFF
+
+// DESKTOP SETTINGS MENU
+
+if (viewportWidth > 500) {
+  settingsBtn.addEventListener("click", function (e) {
+    e.stopPropagation()
+    settings.style.display === "flex"
+      ? (settings.style.display = "none")
+      : (settings.style.display = "flex")
+  })
+} else {
+  settingsBtn.addEventListener("click", function (e) {
+    settingsBtn.style.zIndex = "90"
+    if (mobileSettings.style.transform !== "translateX(0px)") {
+      console.log("ITS GONE")
+      mobileSettings.style.transform = "translateX(0px)"
+    } else {
+      mobileSettings.style.transform = "translate(100%)"
+    }
+  })
+
+  mobileChangeAccentBtn.addEventListener("click", function () {
+    console.log("MOBILE CHANGE ACCENT")
+    alert("WIP")
+  })
+
+  mobileDeleteAllBtn.addEventListener("click", function () {
+    console.log("MOBILE DELETE BTN")
+    localStorage.clear()
+    window.location.reload()
+  })
+}
+
+// END OF DESKTOP SETTINGS MENU
+
 allColorBlocks.forEach(function (block) {
   block.addEventListener("click", function () {
     changeAccentColor(block.id)
   })
-})
-
-modalBackBtn.addEventListener("click", function () {
-  exitModal()
 })
 
 changeAccentBtn.addEventListener("click", function (e) {
@@ -71,13 +126,6 @@ changeAccentBtn.addEventListener("click", function (e) {
   colorChangePage.style.display = "flex"
   settings.style.display = "none"
   colorChangeOverlay.style.display = "initial"
-})
-
-settingsBtn.addEventListener("click", function (e) {
-  e.stopPropagation()
-  settings.style.display === "flex"
-    ? (settings.style.display = "none")
-    : (settings.style.display = "flex")
 })
 
 colorChangePage.addEventListener("click", function (e) {
@@ -197,11 +245,26 @@ creationForm.addEventListener("submit", function (e) {
 })
 
 // BUTTONS
-createBtn.addEventListener("click", goToCreation)
-creationBackBtn.addEventListener("click", goToNotes)
+createBtn.addEventListener("click", function () {
+  goToCreation()
+  toggleSubHeader()
+})
+creationBackBtn.addEventListener("click", function () {
+  goToNotes()
+  toggleSubHeader()
+})
 deleteAllBtn.addEventListener("click", deleteAll)
 
 // FUNCTIONS
+
+function toggleSubHeader() {
+  if (subHeader.style.display !== "none") {
+    subHeader.style.display = "none"
+  } else {
+    subHeader.style.display = "flex"
+  }
+}
+
 function deleteAll() {
   allNotes = []
   localStorage.clear()
