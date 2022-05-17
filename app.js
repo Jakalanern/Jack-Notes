@@ -29,6 +29,45 @@ let alphabeticalOption = $("alphabetical-option")
 // SETTINGS
 let settingsBtn = $(".settings-btn")
 let settings = $(".settings")
+let changeAccentBtn = $(".change-accent-btn")
+let colorChangePage = $(".color-change-page")
+let allColorBlocks = $$(".colorblock")
+let colorChangeOverlay = $(".color-change-overlay")
+
+let colors = {
+  red: { main: "rgb(161, 29, 29)", hover: "rgb(129, 9, 9)" },
+  blue: { main: "rgb(72, 72, 205)", hover: "rgb(42, 42, 163)" },
+  green: { main: "rgb(53, 123, 53)", hover: "rgb(40, 102, 40)" },
+  orange: { main: "rgb(226, 129, 26)", hover: "rgb(195, 107, 13)" },
+  purple: { main: "rgb(146, 67, 146)", hover: "rgb(115, 46, 115)" },
+  pink: { main: "rgb(255, 144, 162)", hover: "rgb(205, 105, 121)" },
+}
+
+allColorBlocks.forEach(function (block) {
+  block.addEventListener("click", function () {
+    changeAccentColor(block.id)
+  })
+})
+
+function changeAccentColor(color) {
+  allColorBlocks.forEach(function (colorBlock) {
+    if (colorBlock.id === color) {
+      $(".header").style.background = color
+      $$("button").forEach(function (button) {
+        if (
+          button.innerText !== "DELETE ALL NOTES" ||
+          button.innerText !== "CHANGE ACCENT COLOR"
+        ) {
+          if (button.innerText !== "DELETE ALL NOTES") {
+            button.style.background = color
+          } else if (button.innerText !== "CHANGE ACCENT COLOR") {
+            button.style.background = "red"
+          }
+        }
+      })
+    }
+  })
+}
 
 window.onload = function () {
   // Load notes from local Storage
@@ -39,6 +78,13 @@ window.onload = function () {
   }
 }
 
+changeAccentBtn.addEventListener("click", function (e) {
+  e.stopPropagation()
+  colorChangePage.style.display = "flex"
+  settings.style.display = "none"
+  colorChangeOverlay.style.display = "initial"
+})
+
 settingsBtn.addEventListener("click", function (e) {
   e.stopPropagation()
   settings.style.display === "flex"
@@ -46,9 +92,19 @@ settingsBtn.addEventListener("click", function (e) {
     : (settings.style.display = "flex")
 })
 
+colorChangePage.addEventListener("click", function (e) {
+  e.stopPropagation()
+})
+
 $("body").addEventListener("click", function () {
   if (settings.style.display === "flex") {
     settings.style.display = "none"
+  }
+  if (colorChangePage.style.display !== "none") {
+    colorChangePage.style.display = "none"
+  }
+  if (colorChangeOverlay.style.display !== "none") {
+    colorChangeOverlay.style.display = "none"
   }
 })
 

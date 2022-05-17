@@ -4,6 +4,18 @@
   --clr-black: rgba(0, 0, 0, 0.815);
   --clr-accent: rgb(239, 140, 69);
   --clr-accent-hover: rgb(209, 112, 44);
+  --clr-red: rgb(161, 29, 29);
+  --clr-red-hover: rgb(129, 9, 9);
+  --clr-blue: rgb(72, 72, 205);
+  --clr-blue-hover: rgb(42, 42, 163);
+  --clr-green: rgb(53, 123, 53);
+  --clr-green-hover: rgb(40, 102, 40);
+  --clr-orange: rgb(226, 129, 26);
+  --clr-orange-hover: rgb(195, 107, 13);
+  --clr-purple: rgb(146, 67, 146);
+  --clr-purple-hover: rgb(115, 46, 115);
+  --clr-pink: rgb(255, 144, 162);
+  --clr-pink-hover: rgb(205, 105, 121);
 }
 
 ::-webkit-scrollbar {
@@ -52,16 +64,19 @@
 
 .settings {
   display: none;
-
-  background: rgba(255, 255, 255, 0.55);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.872);
   position: absolute;
   top: 3.5em;
   right: 2.5em;
   border-radius: 10px;
   padding: 2em;
+  gap: 1em;
 }
 
-.delete-all-btn {
+.btn {
   width: max-content;
   align-self: flex-start;
 
@@ -81,8 +96,105 @@
   transition: background 0.1s;
 }
 
-.delete-all-btn:hover {
+.btn:hover {
   background: rgb(150, 20, 20);
+}
+
+.change-accent-btn {
+  background: rgb(19, 105, 105);
+}
+
+.change-accent-btn:hover {
+  background: rgb(5, 64, 64);
+}
+
+.color-change-overlay {
+  z-index: 98;
+
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.85;
+}
+
+.color-change-page {
+  z-index: 99;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.806);
+  color: white;
+}
+
+.color-block-wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 2em;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2em;
+}
+
+.colorblock {
+  width: 200px;
+  height: 200px;
+  background: red;
+  cursor: pointer;
+}
+
+.colorblock:nth-of-type(1) {
+  background: var(--clr-red);
+}
+
+.colorblock:nth-of-type(1):hover {
+  background: var(--clr-red-hover);
+}
+
+.colorblock:nth-of-type(2) {
+  background: var(--clr-blue);
+}
+
+.colorblock:nth-of-type(2):hover {
+  background: var(--clr-blue-hover);
+}
+
+.colorblock:nth-of-type(3) {
+  background: var(--clr-green);
+}
+
+.colorblock:nth-of-type(3):hover {
+  background: var(--clr-green-hover);
+}
+
+.colorblock:nth-of-type(4) {
+  background: var(--clr-orange);
+}
+
+.colorblock:nth-of-type(4):hover {
+  background: var(--clr-orange-hover);
+}
+
+.colorblock:nth-of-type(5) {
+  background: var(--clr-purple);
+}
+
+.colorblock:nth-of-type(5):hover {
+  background: var(--clr-purple-hover);
+}
+
+.colorblock:nth-of-type(6) {
+  background: var(--clr-pink);
+}
+
+.colorblock:nth-of-type(6):hover {
+  background: var(--clr-pink-hover);
 }
 
 header {
