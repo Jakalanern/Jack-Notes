@@ -146,6 +146,9 @@ creationForm.addEventListener("submit", function (e) {
 
     // Store the submit count in localStorage
     localStorage.setItem("noteCount", creationSubmitCount)
+
+    // If we are editing, set it to false now
+    editing = false
   }
 })
 
@@ -203,13 +206,21 @@ function createNote(note) {
   noteDesc.classList.add("note-description")
   noteTime.classList.add("note-timestamp")
 
+  // Define current time
+  currentTime = new Date().toLocaleTimeString()
+
   // Add content
   noteTitle.innerText = note.title
   note.desc
     ? (noteDesc.innerHTML = note.desc)
     : (noteDesc.innerHTML = "No Description Added")
-  noteTime.innerText = "Created at " + new Date().toLocaleTimeString()
-  note.timeCreated = new Date().toLocaleTimeString()
+  if (editing) {
+    note.lastEditTime = currentTime
+    noteTime.innerText = "Edited at: " + currentTime
+  } else {
+    note.timeCreated = currentTime
+    noteTime.innerText = "Created at " + currentTime
+  }
 
   //Append the note to the container, and the children to note
   notesContainer.prepend(noteEle)
@@ -273,6 +284,7 @@ function noteListenerHandler(note) {
     currentID = parseInt(this.id)
     currentTitle = this.children[0].innerText
     currentDesc = this.children[1].innerText
+    lastEleCurrentTime = this.children[2].innerText
     currentEle = this
     displayModal(this.children[0].innerText, this.children[1].innerText)
   })
@@ -283,8 +295,10 @@ x.addEventListener("click", function () {
   exitModal()
 })
 
+let editing = false
 editBtn.addEventListener("click", function () {
   goToCreation()
+  editing = true
   // Set the inputs equal to what they were before
   creationTitle.value = currentTitle
   if (currentDesc === "No Description Added") {
