@@ -440,7 +440,7 @@ function noteListenerHandler(note) {
     console.log(this)
     currentID = parseInt(this.id)
     currentTitle = this.children[0].innerText
-    currentDesc = this.children[1].children[0].innerHTML
+    currentDesc = this.children[1].innerHTML
     lastEleCurrentTime = this.children[2].innerText
     currentEle = this
     displayModal(this.children[0].innerText, this.children[1].innerHTML)
