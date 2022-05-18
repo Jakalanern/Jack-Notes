@@ -510,6 +510,9 @@ function deleteLastSelectedElement() {
 }
 
 function changeAccentColor(color) {
+  colorPicker.value = currentColor
+  mobileColorPicker.value = currentColor
+
   modalTitle.style.borderBottom = `2px solid ${color}`
   header.style.background = color
   mobileSettings.style.background = color
