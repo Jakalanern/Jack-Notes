@@ -51,10 +51,6 @@ let mobileDeleteAllBtn = $(".mobile-delete-all-btn")
 let mobileColorPicker = $(".mobile-color-picker")
 let currentColor = "#EF8C45"
 
-creationTextArea.addEventListener("input", function () {
-  console.log()
-})
-
 if (localStorage.getItem("current-color", currentColor)) {
   currentColor = localStorage.getItem("current-color", currentColor)
 }
@@ -339,6 +335,7 @@ function goToNotes() {
 function clearCreationForm() {
   creationTitle.value = ""
   creationTextArea.value = ""
+  quill.container.firstChild.innerHTML = ""
 }
 
 function newNote(id, HTML, ele) {
@@ -443,7 +440,7 @@ function noteListenerHandler(note) {
     console.log(this)
     currentID = parseInt(this.id)
     currentTitle = this.children[0].innerText
-    currentDesc = this.children[1].innerText
+    currentDesc = this.children[1].children[0].innerText
     lastEleCurrentTime = this.children[2].innerText
     currentEle = this
     displayModal(this.children[0].innerText, this.children[1].innerHTML)
@@ -462,8 +459,10 @@ editBtn.addEventListener("click", function () {
   // Set the inputs equal to what they were before
   creationTitle.value = currentTitle
   if (currentDesc === "No Description Added") {
+    quill.container.firstChild.innerHTML = ""
     creationTextArea.value = ""
   } else {
+    quill.container.firstChild.innerHTML = currentDesc
     creationTextArea.value = currentDesc
   }
   // Then lets delete the element behind the scenes
