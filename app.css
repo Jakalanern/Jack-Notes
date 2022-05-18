@@ -619,6 +619,10 @@ header p {
     transform: scale(0.9);
   }
 
+   .creation-form h2 {
+    margin-top: 0;
+  }
+  
   .edit,
   .x {
     margin-top: 2em;
