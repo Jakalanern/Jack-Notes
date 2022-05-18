@@ -2,8 +2,8 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 // VARIABLES
+let header = $(".header")
 let subHeader = $(".sub-header")
-
 let createBtn = $(".create-btn")
 let deleteAllBtn = $(".delete-all-btn")
 let notesSection = $(".notes-section")
@@ -17,6 +17,9 @@ let creationBtnParent = $(".creation-buttons")
 let creationBackBtn = $(".back")
 let creationSubmitBtn = $(".submit")
 let creationTitleAlert = $(".title-alert")
+let quill = new Quill(creationTextArea, {
+  theme: "snow",
+})
 
 // MODAL / OVERLAY VARIABLES
 let modal = $(".modal")
@@ -39,11 +42,39 @@ let changeAccentBtn = $(".change-accent-btn")
 let colorChangePage = $(".color-change-page")
 let allColorBlocks = $$(".colorblock")
 let colorChangeOverlay = $(".color-change-overlay")
+let colorPicker = $(".color-picker")
 
 // MOBILE SETTINGS
 let mobileSettings = $(".mobile-settings")
 let mobileChangeAccentBtn = $(".mobile-change-accent-btn")
 let mobileDeleteAllBtn = $(".mobile-delete-all-btn")
+let mobileColorPicker = $(".mobile-color-picker")
+let currentColor = "#EF8C45"
+
+creationTextArea.addEventListener("input", function () {
+  console.log()
+})
+
+if (localStorage.getItem("current-color", currentColor)) {
+  currentColor = localStorage.getItem("current-color", currentColor)
+}
+
+colorPicker.value = currentColor
+mobileColorPicker.value = currentColor
+changeAccentColor(currentColor)
+
+colorPicker.addEventListener("input", function (e) {
+  currentColor = e.target.value
+  changeAccentColor(currentColor)
+  // Store it!
+  localStorage.setItem("current-color", currentColor)
+})
+
+mobileColorPicker.addEventListener("input", function (e) {
+  currentColor = e.target.value
+  changeAccentColor(currentColor)
+  localStorage.setItem("current-color", currentColor)
+})
 
 let colors = {
   red: "rgb(161, 29, 29)",
@@ -62,58 +93,63 @@ window.onload = function () {
   if (localStorage.getItem("noteCount")) {
     creationSubmitCount = parseInt(localStorage.getItem("noteCount"))
   }
-}
 
-// MOBILE SETTINGS MENU
-
-let viewportWidth = window.innerWidth
-// IF MOBILE (MAX-WIDTH 500px)
-if (viewportWidth < 500) {
-  // CODE HERE
-  console.log("MOBILE MOBILE MOBILE!")
-} else {
-  console.log("DEKSTOP DESKTOP DESKTOP!")
+  if (window.innerWidth > 500) {
+    mobileSettings.style.display = "none"
+    desktopSizing = true
+  } else {
+    settings.style.display = ""
+    desktopSizing = false
+  }
 }
 
 modalBackBtn.addEventListener("click", function () {
   exitModal()
 })
 
-// END OF MOBILE STUFF
-
 // DESKTOP SETTINGS MENU
+window.addEventListener("resize", function () {
+  if (window.innerWidth > 500) {
+    mobileSettings.style.display = "none"
+    settings.style.display = "none"
+    desktopSizing = true
+  } else {
+    mobileSettings.style.display = "flex"
+    settings.style.display = "none"
+    desktopSizing = false
+  }
+})
 
-if (viewportWidth > 500) {
-  settingsBtn.addEventListener("click", function (e) {
-    e.stopPropagation()
-    settings.style.display === "flex"
-      ? (settings.style.display = "none")
-      : (settings.style.display = "flex")
-  })
-} else {
-  settingsBtn.addEventListener("click", function (e) {
+settingsBtn.addEventListener("click", function (e) {
+  e.stopPropagation()
+  if (desktopSizing) {
+    settings.style.display = "flex"
+  } else {
     settingsBtn.style.zIndex = "90"
     if (mobileSettings.style.transform !== "translateX(0px)") {
-      console.log("ITS GONE")
       mobileSettings.style.transform = "translateX(0px)"
     } else {
       mobileSettings.style.transform = "translate(100%)"
     }
-  })
+  }
+})
 
-  mobileChangeAccentBtn.addEventListener("click", function () {
-    console.log("MOBILE CHANGE ACCENT")
-    alert("WIP")
-  })
+// MOBILE SETTINGS MENU
 
-  mobileDeleteAllBtn.addEventListener("click", function () {
-    console.log("MOBILE DELETE BTN")
-    localStorage.clear()
-    window.location.reload()
-  })
-}
+// mobileChangeAccentBtn.addEventListener("click", function () {
+//   console.log("MOBILE CHANGE ACCENT")
+//   alert("WIP")
+// })
 
-// END OF DESKTOP SETTINGS MENU
+mobileDeleteAllBtn.addEventListener("click", function () {
+  console.log("MOBILE DELETE BTN")
+  localStorage.clear()
+  window.location.reload()
+})
+
+// END OF MOBILE STUFF
+
+// COLOR CHANGE
 
 allColorBlocks.forEach(function (block) {
   block.addEventListener("click", function () {
@@ -121,14 +157,24 @@ allColorBlocks.forEach(function (block) {
   })
 })
 
-changeAccentBtn.addEventListener("click", function (e) {
-  e.stopPropagation()
-  colorChangePage.style.display = "flex"
-  settings.style.display = "none"
-  colorChangeOverlay.style.display = "initial"
-})
+// changeAccentBtn.addEventListener("click", function (e) {
+//   e.stopPropagation()
+//   colorChangePage.style.display = "flex"
+//   settings.style.display = "none"
+//   colorChangeOverlay.style.display = "initial"
+// })
+
+// **************
 
 colorChangePage.addEventListener("click", function (e) {
+  e.stopPropagation()
+})
+
+settings.addEventListener("click", function (e) {
+  e.stopPropagation()
+})
+
+mobileSettings.addEventListener("click", function (e) {
   e.stopPropagation()
 })
 
@@ -136,6 +182,11 @@ $("body").addEventListener("click", function () {
   if (settings.style.display === "flex") {
     settings.style.display = "none"
   }
+
+  if (mobileSettings.style.transform === "translateX(0px)") {
+    mobileSettings.style.transform = "translate(100%)"
+  }
+
   if (colorChangePage.style.display !== "none") {
     colorChangePage.style.display = "none"
   }
@@ -143,6 +194,8 @@ $("body").addEventListener("click", function () {
     colorChangeOverlay.style.display = "none"
   }
 })
+
+// *******************************
 
 // YOU CAN PRESS ENTER TO CREATE NOTE IF ON NOTES PAGE
 document.addEventListener("keydown", function (e) {
@@ -216,7 +269,7 @@ creationForm.addEventListener("submit", function (e) {
       creationSubmitCount,
       // The title input's value on the creation page
       creationTitle.value,
-      creationTextArea.value
+      quill.container.firstChild.innerHTML
     )
 
     Note.prototype.printInfo = function () {
@@ -393,7 +446,7 @@ function noteListenerHandler(note) {
     currentDesc = this.children[1].innerText
     lastEleCurrentTime = this.children[2].innerText
     currentEle = this
-    displayModal(this.children[0].innerText, this.children[1].innerText)
+    displayModal(this.children[0].innerText, this.children[1].innerHTML)
   })
 }
 
@@ -427,7 +480,7 @@ function displayModal(title, desc) {
   overlay.style.display = "initial"
   modal.style.display = "flex"
   modalTitle.innerText = title
-  modalDesc.innerText = desc
+  modalDesc.innerHTML = desc
   if (modalDesc.innerText === "No Description Added") {
     modalDesc.style.color = "lightgrey"
     modalDesc.style.fontStyle = "italic"
@@ -458,21 +511,20 @@ function deleteLastSelectedElement() {
 }
 
 function changeAccentColor(color) {
-  allColorBlocks.forEach(function (colorBlock) {
-    if (colorBlock.id === color) {
-      $(".header").style.background = color
-      $$("button").forEach(function (button) {
-        if (
-          button.innerText !== "DELETE ALL NOTES" ||
-          button.innerText !== "CHANGE ACCENT COLOR"
-        ) {
-          if (button.innerText !== "DELETE ALL NOTES") {
-            button.style.background = color
-          } else if (button.innerText !== "CHANGE ACCENT COLOR") {
-            button.style.background = "red"
-          }
-        }
-      })
+  modalTitle.style.borderBottom = `2px solid ${color}`
+  header.style.background = color
+  mobileSettings.style.background = color
+  modalBackBtn.style.background = color
+  settings.style.border = `2px solid ${color}`
+
+  mobileDeleteAllBtn.style.background = red
+
+  $$("button").forEach(function (button) {
+    if (
+      button.innerText !== "DELETE ALL NOTES" &&
+      button.innerText !== "CHANGE ACCENT COLOR"
+    ) {
+      button.style.background = color
     }
   })
 }

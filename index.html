@@ -8,6 +8,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
     <link rel="stylesheet" href="app.css" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <title>Jack Notes</title>
   </head>
   <body>
@@ -22,13 +23,16 @@
     </lord-icon>
     <!-- DESKTOP SETTINGS -->
     <div class="settings">
-      <button type="button" class="change-accent-btn btn">CHANGE ACCENT COLOR</button>
+      <!-- <button type="button" class="change-accent-btn btn">CHANGE ACCENT COLOR</button> -->
+      <h3>Change color theme:</h3>
+      <input type="color" class="color-picker picker" >
       <button type="button" class="delete-all-btn btn">DELETE ALL NOTES</button>
     </div>
     <!-- **************** -->
     <!-- MOBILE SETTINGS -->
     <div class="mobile-settings">
-      <button type="button" class="mobile-change-accent-btn btn mobile-btn">CHANGE ACCENT COLOR</button>
+      <h3>Change Color Theme:</h3>
+      <input type="color" class="mobile-color-picker picker">
       <button type="button" class="mobile-delete-all-btn btn mobile-btn">DELETE ALL NOTES</button>
     </div>
     <!-- **************** -->
@@ -84,13 +88,10 @@
             placeholder="Note title"
             class="creation-form-title-input"
           />
-          <textarea
-            type="text"
-            placeholder="Note Description"
+          <div
             class="creation-form-desc-input"
-            rows="6"
-            cols="30"
-          /></textarea>
+          />
+        </div>
           <div class="creation-buttons">
             <button class="back" type="button">Back</button>
             <button class="submit" type="submit">Submit</button>
@@ -101,5 +102,6 @@
   </div>
   <script src="app.js" defer></script>
   <script src="https://cdn.lordicon.com/xdjxvujz.js" defer></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   </body>
 </html>
