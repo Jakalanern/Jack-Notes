@@ -541,6 +541,7 @@ header p {
   }
 
   .mobile-settings {
+    z-index: 50;
     position: fixed;
     display: flex;
     transform: translateX(100vw);
