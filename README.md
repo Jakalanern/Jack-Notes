@@ -4,9 +4,9 @@ Big project involving storing objects in a local storage, managing an array of o
 
 Very fun and learned a ton!
 
-Object Constructors
-Listeners
-Functions
-LocalStorage
-High Order Functions
+Object Constructors |
+Listeners |
+Functions |
+LocalStorage |
+High Order Functions |
 Etc
